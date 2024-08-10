@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter</title>
+</head>
+<style>
+    #counter {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        background-color: black;
+        color: #fff;
+    }
+
+    #counter div {
+        font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        text-align: center;
+        width: 33%;
+        margin: 8px;
+        padding: 8px;
+        }
+
+    #counter div p:first-child {
+        font-size: 5em;
+        font-weight: 900;
+        padding: 0;
+        margin: 0;
+    }
+    #counter div p:last-child {
+        font-weight: 900;
+        padding: 0;
+        margin: 0;
+        letter-spacing: 8px;
+    }
+
+    @media only screen and (min-width: 1025px) {
+        #counter div {
+            width: 20%;
+        }
+    }
+    @media only screen and (max-width: 1024px) {
+        #counter div {
+            width: 40%;
+        }
+    }
+
+    @media only screen and (max-width: 600px) {
+        #counter div {
+            width: 100%;
+        }
+    }
+</style>
+<body>
+    <div id="counter"></div>
+</body>
+<script>
+    let counter = document.getElementById('counter');
+
+    window.setInterval(Counter, 1000)
+
+    function Counter() {
+        let futureDate = new Date("2025-01-01T00:00:00")
+        let currentDate = new Date()
+
+        let difference = futureDate - currentDate
+
+        let Days = String(Math.floor(difference / (1000 * 60 * 60 * 24))).padStart(2,'0')
+        let Hours = String(Math.floor(difference % (1000 * 60 * 60 * 24) / (1000 * 60 * 60))).padStart(2,'0')
+        let Minutes = String(Math.floor(difference % (1000 * 60 * 60) / (1000 * 60))).padStart(2,'0')
+        let Seconds = String(Math.floor(difference % (1000 * 60) / 1000)).padStart(2,'0')
+
+        counter.innerHTML = `
+            <div>
+                <p>${Days}</p>
+                <p>DAYS</p>    
+            </div>
+            <div>
+                <p>${Hours}</p>
+                <p>HOURS</p>    
+            </div>
+            <div>
+                <p>${Minutes}</p>
+                <p>MINUTES</p>    
+            </div>
+            <div>
+                <p>${Seconds}</p>
+                <p>SECONDS</p>    
+            </div>
+        `
+        
+    }
+
+</script>
+</html>
